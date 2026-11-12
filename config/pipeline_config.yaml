@@ -1,0 +1,111 @@
+
+application:
+  name: DataFlow
+  environment: local
+
+storage:
+  format: json
+  base_path: data
+  layers:
+    bronze: data/bronze
+    silver: data/silver
+    gold: data/gold
+    quarantine: data/quarantine
+
+logging:
+  level: INFO
+  directory: reports/logs
+
+metrics:
+  enabled: true
+  directory: reports/metrics
+
+validation:
+  fail_on_schema_mismatch: true
+  quarantine_invalid_records: true
+  check_nulls: true
+  check_duplicates: true
+
+pipeline:
+  save_run_metadata: true
+  enable_reconciliation: true
+  enable_idempotency: true
+  bronze_history: true
+
+datasets:
+
+  customers:
+    enabled: true
+    source:
+      type: api
+      url: https://fakestoreapi.com/users
+      records_key: null
+
+    transformation:
+      type: select_fields
+      field_mapping:
+        customer_id: id
+        username: username
+        email: email
+
+    validation:
+      required_fields:
+        - customer_id
+        - username
+        - email
+      primary_key:
+        - customer_id
+      field_types:
+        customer_id: integer
+        username: string
+        email: string
+
+    output:
+      path: data/gold/customers.json
+
+  cart_items:
+    enabled: true
+    source:
+      type: api
+      url: https://fakestoreapi.com/carts
+      records_key: null
+
+    transformation:
+      type: flatten_nested_records
+      nested_field: products
+
+      parent_mapping:
+        cart_id: id
+        user_id: userId
+        cart_date: date
+
+      child_mapping:
+        product_id: productId
+        quantity: quantity
+
+    validation:
+      required_fields:
+        - cart_id
+        - user_id
+        - cart_date
+        - product_id
+        - quantity
+
+      primary_key:
+        - cart_id
+        - product_id
+      field_types:
+        cart_id: integer
+        user_id: integer
+        cart_date: datetime
+        product_id: integer
+        quantity: integer
+      minimum_values:
+        quantity: 1
+      references:
+        - field: user_id
+          dataset: customers
+          reference_field: customer_id
+
+    output:
+      path: data/gold/cart_items.json

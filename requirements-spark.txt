@@ -1,0 +1,4 @@
+# Optional dependencies for the Spark/Delta backend. The Python pipeline does
+# not require this file.
+pyspark==3.5.6
+delta-spark==3.3.2

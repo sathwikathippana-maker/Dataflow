@@ -1,0 +1,4 @@
+requests
+PyYAML
+pytest
+streamlit>=1.30,<2

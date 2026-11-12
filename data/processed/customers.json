@@ -1,0 +1,52 @@
+[
+    {
+        "customer_id": 1,
+        "username": "johnd",
+        "email": "john@gmail.com"
+    },
+    {
+        "customer_id": 2,
+        "username": "mor_2314",
+        "email": "morrison@gmail.com"
+    },
+    {
+        "customer_id": 3,
+        "username": "kevinryan",
+        "email": "kevin@gmail.com"
+    },
+    {
+        "customer_id": 4,
+        "username": "donero",
+        "email": "don@gmail.com"
+    },
+    {
+        "customer_id": 5,
+        "username": "derek",
+        "email": "derek@gmail.com"
+    },
+    {
+        "customer_id": 6,
+        "username": "david_r",
+        "email": "david_r@gmail.com"
+    },
+    {
+        "customer_id": 7,
+        "username": "snyder",
+        "email": "miriam@gmail.com"
+    },
+    {
+        "customer_id": 8,
+        "username": "hopkins",
+        "email": "william@gmail.com"
+    },
+    {
+        "customer_id": 9,
+        "username": "kate_h",
+        "email": "kate@gmail.com"
+    },
+    {
+        "customer_id": 10,
+        "username": "jimmie_k",
+        "email": "jimmie@gmail.com"
+    }
+]

@@ -1,0 +1,25 @@
+@'
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+data/large_sample_output/
+data/sample_output/
+data/bronze/
+data/silver/
+data/gold/
+data/quarantine/
+
+reports/metrics/
+reports/sample_metrics/
+reports/large_sample_metrics/
+reports/logs/
+reports/sample_logs/
+reports/large_sample_logs/
+
+*.log
+spark-warehouse/
+metastore_db/
+'@ | Set-Content .gitignore
